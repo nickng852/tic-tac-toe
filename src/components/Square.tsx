@@ -12,7 +12,7 @@ const Square = ({ value, onClick }: Props) => {
 
   return (
     <main
-      className={`flex h-14 w-14 items-center justify-center rounded-lg bg-gray-100 p-4 sm:h-24 sm:w-24 ${
+      className={`flex h-16 w-16 items-center justify-center rounded-lg bg-gray-100 sm:h-24 sm:w-24 ${
         winner !== "None" ? "cursor-default" : "cursor-pointer"
       }`}
       onClick={onClick}

@@ -7,7 +7,7 @@ const Board = () => {
   const { board, player, winner, handleClick, resetBoard } = useAppContext();
 
   return (
-    <div className="flex flex-col items-center justify-center gap-6">
+    <div className="flex w-full flex-col items-center justify-center gap-6">
       <div className="flex flex-col items-center justify-center gap-4">
         <h1 className="text-lg">Tic Tac Toe</h1>
         <p className="font-light">
