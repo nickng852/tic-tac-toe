@@ -2,7 +2,7 @@ import Board from "./components/Board";
 
 const App = () => {
   return (
-    <div className="App">
+    <div className="absolute inset-0 flex items-center justify-center">
       <Board />
     </div>
   );
