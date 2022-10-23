@@ -1,22 +1,29 @@
+import { VscChromeClose, VscCircleLargeOutline } from "react-icons/vsc";
+
 import { useAppContext } from "../contexts/AppContext";
 
 import ActionButton from "./ActionButton";
 import Square from "./Square";
 
 const Board = () => {
-  const { board, player, winner, handleClick, resetBoard } = useAppContext();
+  const { board, player, handleClick, resetBoard } = useAppContext();
 
   return (
     <div className="flex w-full flex-col items-center justify-center gap-6">
       <div className="flex flex-col items-center justify-center gap-4">
         <h1 className="text-lg">Tic Tac Toe</h1>
-        <p className="font-light">
-          Next player: <span>{player}</span>
+        <p className="flex items-center justify-center gap-2 font-light">
+          Now is
+          <span>
+            {player === "X" ? (
+              <VscChromeClose size={20} />
+            ) : (
+              <VscCircleLargeOutline size={20} />
+            )}
+          </span>
+          's turn.
         </p>
-        <p className="font-light">
-          Winner: <span>{winner}</span>
-        </p>
-        <ActionButton color="light" text="Reset" onClick={resetBoard} />
+        <ActionButton color="light" text="Restart" onClick={resetBoard} />
       </div>
 
       <div className="flex flex-col items-center justify-center gap-6">

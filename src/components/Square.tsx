@@ -1,6 +1,6 @@
-import { useAppContext } from "../contexts/AppContext";
-
 import { VscChromeClose, VscCircleLargeOutline } from "react-icons/vsc";
+
+import { useAppContext } from "../contexts/AppContext";
 
 interface Props {
   value: string;

@@ -1,4 +1,5 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
+import toast from "react-hot-toast";
 
 interface AppContextInterface {
   initialBoardState: string[][];
@@ -9,7 +10,7 @@ interface AppContextInterface {
   winner: string;
   setWinner: (winner: string) => void;
   handleClick: (index: number, secondIndex: number) => void;
-  checkWin: () => void;
+  checkResult: () => void;
   resetBoard: () => void;
 }
 
@@ -29,6 +30,22 @@ export const AppContext = ({ children }: ChildrenProps) => {
   const [player, setPlayer] = useState<string>("X");
   const [winner, setWinner] = useState<string>("None");
 
+  useEffect(() => {
+    if (winner === "X") {
+      toast("X won!", {
+        icon: "👏🏼",
+      });
+    } else if (winner === "O") {
+      toast("O won!", {
+        icon: "👏🏼",
+      });
+    } else if (winner === "Draw") {
+      toast("It a draw!", {
+        icon: "🙌🏼",
+      });
+    }
+  }, [winner]);
+
   const handleClick = (index: number, secondIndex: number) => {
     // disbale click when a player wins
     if (winner !== "None") return;
@@ -45,11 +62,18 @@ export const AppContext = ({ children }: ChildrenProps) => {
       setPlayer("X");
     }
 
-    checkWin();
+    checkResult();
   };
 
-  const checkWin = () => {
-    // horizontal
+  const checkResult = () => {
+    // draw
+    const row = board.map((item) => item);
+    const allRows = row.flat();
+    if (allRows.every((value) => value !== "")) {
+      setWinner("Draw");
+    }
+
+    // win (horizontal)
     for (let i = 0; i < board.length; i++) {
       if (board[i].every((value) => value === "X")) {
         setWinner("X");
@@ -58,7 +82,7 @@ export const AppContext = ({ children }: ChildrenProps) => {
       }
     }
 
-    // vertical
+    // win (vertical)
     for (let i = 0; i < board.length; i++) {
       const column = board.map((item) => item[i]);
       if (column.every((value) => value === "X")) {
@@ -68,7 +92,7 @@ export const AppContext = ({ children }: ChildrenProps) => {
       }
     }
 
-    //diagonal 1
+    // win (diagonal 1)
     const diagonal1 = [board[0][0], board[1][1], board[2][2]];
     if (diagonal1.every((value) => value === "X")) {
       setWinner("X");
@@ -76,7 +100,7 @@ export const AppContext = ({ children }: ChildrenProps) => {
       setWinner("O");
     }
 
-    //diagonal 2
+    // win (diagonal 2)
     const diagonal2 = [board[0][2], board[1][1], board[2][0]];
     if (diagonal2.every((value) => value === "X")) {
       setWinner("X");
@@ -101,7 +125,7 @@ export const AppContext = ({ children }: ChildrenProps) => {
         winner,
         setWinner,
         handleClick,
-        checkWin,
+        checkResult,
         resetBoard,
       }}
     >

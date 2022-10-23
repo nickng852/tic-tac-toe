@@ -1,3 +1,5 @@
+import { Toaster } from "react-hot-toast";
+
 import Board from "./components/Board";
 
 const App = () => {
@@ -6,6 +8,7 @@ const App = () => {
       <div className="flex w-full items-center justify-center">
         <Board />
       </div>
+      <Toaster />
     </div>
   );
 };
