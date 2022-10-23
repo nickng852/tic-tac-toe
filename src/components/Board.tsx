@@ -7,7 +7,7 @@ const Board = () => {
   const { board, player, winner, handleClick, resetBoard } = useAppContext();
 
   return (
-    <div className="space-y-6">
+    <div className="flex flex-col items-center justify-center gap-6">
       <div className="flex flex-col items-center justify-center gap-4">
         <h1 className="text-lg">Tic Tac Toe</h1>
         <p className="font-light">
@@ -19,7 +19,7 @@ const Board = () => {
         <ActionButton color="light" text="Reset" onClick={resetBoard} />
       </div>
 
-      <div className="space-y-6">
+      <div className="flex flex-col items-center justify-center gap-6">
         <div className="flex gap-6">
           <Square value={board[0][0]} onClick={() => handleClick(0, 0)} />
           <Square value={board[0][1]} onClick={() => handleClick(0, 1)} />
