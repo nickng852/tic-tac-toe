@@ -59,6 +59,6 @@ npm run dev
 
 ## Screenshot
 
-<img src="/src/assets/screenshot-1.png"></img>
+<img src="/src/assets/screenshot-2.png"></img>
 
 <p align="right">(<a href="#top">back to top</a>)</p>
