@@ -7,7 +7,7 @@ interface AppContextInterface {
   setBoard: (board: string[][]) => void;
   player: string;
   setPlayer: (player: string) => void;
-  winner: string;
+  winner: string | null;
   setWinner: (winner: string) => void;
   handleClick: (index: number, secondIndex: number) => void;
   checkResult: () => void;
@@ -27,8 +27,9 @@ export const AppContext = ({ children }: ChildrenProps) => {
     ["", "", ""],
   ];
   const [board, setBoard] = useState<string[][]>(initialBoardState);
-  const [player, setPlayer] = useState<string>("X");
-  const [winner, setWinner] = useState<string>("None");
+  const defaultPlayer = "X";
+  const [player, setPlayer] = useState<string>(defaultPlayer);
+  const [winner, setWinner] = useState<string | null>(null);
 
   useEffect(() => {
     if (winner === "X") {
@@ -40,7 +41,7 @@ export const AppContext = ({ children }: ChildrenProps) => {
         icon: "👏🏼",
       });
     } else if (winner === "Draw") {
-      toast("It a draw!", {
+      toast("It's a draw!", {
         icon: "🙌🏼",
       });
     }
@@ -48,7 +49,7 @@ export const AppContext = ({ children }: ChildrenProps) => {
 
   const handleClick = (index: number, secondIndex: number) => {
     // disbale click when a player wins
-    if (winner !== "None") return;
+    if (winner !== null) return;
     // disbale click when a player placed on that square
     if (board[index][secondIndex] !== "") return;
 
@@ -111,7 +112,8 @@ export const AppContext = ({ children }: ChildrenProps) => {
 
   const resetBoard = () => {
     setBoard(initialBoardState);
-    setWinner("None");
+    setPlayer(defaultPlayer);
+    setWinner(null);
   };
 
   return (

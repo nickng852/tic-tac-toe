@@ -15,11 +15,8 @@ const Board = () => {
         <p className="flex items-center justify-center gap-2 font-light">
           Now is
           <span>
-            {player === "X" ? (
-              <VscChromeClose size={20} />
-            ) : (
-              <VscCircleLargeOutline size={20} />
-            )}
+            {player === "X" && <VscChromeClose size={20} />}
+            {player === "O" && <VscCircleLargeOutline size={20} />}
           </span>
           's turn.
         </p>
