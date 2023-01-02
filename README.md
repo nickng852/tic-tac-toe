@@ -27,6 +27,16 @@ Run development server
 npm run dev
 ```
 
+<!-- GETTING STARTED WITH DOCKER -->
+
+## Getting Started with Docker
+
+Set up using Docker
+
+```
+docker compose up
+```
+
 <!-- BUILD WITH -->
 
 ## Built With
